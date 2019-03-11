@@ -26,9 +26,10 @@ class BookList extends Component {
   render() {
     const books = this.state.books.map(book => {
       return <div className="card" key={book._id}>
+      <Link to={"/books/"+book._id}>
       <img className="book-cover" src={book.image} />
       <h4 className="book-title">{book.title}</h4>
-      
+      </Link>
       </div>;
     });
     return <div className="cards-container">{books}</div>;
