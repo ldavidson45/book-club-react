@@ -12,6 +12,7 @@ class Book extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         let selectedBookId = this.props.match.params.id;
         
         Axios.get("http://localhost:3000/api/books/"+selectedBookId)
