@@ -9,8 +9,18 @@ import {
 } from "react-router-dom";
 import BookList from "../BookList/BookList";
 import Book from "../Book/Book";
+import axios from "axios";
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+    };
+  }
+
+
   render() {
     return (
       <div>
@@ -22,14 +32,14 @@ class App extends Component {
             path="/"
             exact
             render={props => {
-              return <BookList {...props} />;
+              return <BookList />;
             }}
           />
           <Route
             path="/books/:id"
             exact
             render={props => {
-              return <Book {...props} />;
+              return <Book {...props} birds={this.state.birds}/>;
             }}
           />
         </Switch>
