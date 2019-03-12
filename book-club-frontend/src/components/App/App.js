@@ -24,6 +24,7 @@ class App extends Component {
       <div>
         <nav>
           <h3>Book Club Library</h3>
+          <Link className="nav-link" to="/"> Home </Link>
         </nav>
         <Switch>
           <Route
