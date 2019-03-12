@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from "axios";
 
 class NewBook extends Component {
     constructor(props) {
@@ -18,12 +19,16 @@ class NewBook extends Component {
       }
     
       handleSubmit(event) {
-        alert('A name was submitted: ' + this.state);
+          Axios.post("http://localhost:3000/api/books", this.state)
+            .then(res => {
+                this.props.getData()
+                this.props.history.push("/")
+            })
         event.preventDefault();
       }
     
       render() {
-          console.log(this.props.books)
+          console.log(this.props)
         return (
           <form onSubmit={this.handleSubmit}>
             <label>

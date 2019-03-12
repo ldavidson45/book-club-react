@@ -18,13 +18,29 @@ class App extends Component {
     this.state = {
       books: []
     };
+
+    this.addBook = this.addBook.bind(this)
+    this.getData = this.getData.bind(this)
   }
   componentDidMount() {
+    this.getData()
+  //   Axios.get("http://localhost:3000/api/books")
+  // .then(res => {
+  //   const books = res.data;
+  //   this.setState({ books });
+  // })
+}
+
+  getData () {
     Axios.get("http://localhost:3000/api/books")
   .then(res => {
     const books = res.data;
     this.setState({ books });
   })
+  }
+
+addBook(newBook) {
+  this.state.books.push(newBook)
 }
 
 
@@ -57,7 +73,7 @@ class App extends Component {
             path="/books/:id"
             exact
             render={(props) => {
-              return <Book {...props} books={this.state.books} />;
+              return <Book {...this.state} {...props} />;
             }}
           />
 
@@ -65,7 +81,7 @@ class App extends Component {
             path="/new-book"
             exact
             render={(props) => {
-              return <NewBook {...props} books={this.state.books}/>;
+              return <NewBook {...props} addBook={this.addBook} getData={this.getData} books={this.state.books}/>;
             }}
           />
 

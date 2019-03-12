@@ -5,9 +5,7 @@ import "./BookList.css"
 
 class BookList extends Component {
 
-      addBook(newBook) {
-        this.state.books.push(newBook)
-      }
+
 
   render() {
     console.log(this.props.books)
