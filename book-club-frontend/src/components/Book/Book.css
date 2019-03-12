@@ -1,0 +1,11 @@
+
+.book-image {
+    height: 300px;
+    width: auto;
+    margin: 10px auto;
+    display: block
+}
+
+.book-author {
+    text-align: center
+}

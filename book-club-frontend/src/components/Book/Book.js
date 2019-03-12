@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import "./Book.css"
 
 class Book extends Component {
     constructor(props) {
@@ -27,9 +28,9 @@ class Book extends Component {
         return (
             
             <div>
-                <h1>{book.title}</h1>
-                <img src={book.image} />
-                <h2>{book.author}</h2>
+                <h1 className="book-title">{book.title}</h1>
+                <h2 className="book-author">{book.author}</h2>
+                <img className="book-image" src={book.image} />
             </div>
         );
     }

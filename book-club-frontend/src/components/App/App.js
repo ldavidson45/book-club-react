@@ -11,15 +11,13 @@ import BookList from "../BookList/BookList";
 import Book from "../Book/Book";
 import axios from "axios";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
+      books: []
     };
   }
-
 
   render() {
     return (
@@ -31,7 +29,7 @@ class App extends Component {
           <Route
             path="/"
             exact
-            render={props => {
+            render={() => {
               return <BookList />;
             }}
           />
@@ -39,7 +37,7 @@ class App extends Component {
             path="/books/:id"
             exact
             render={props => {
-              return <Book {...props} birds={this.state.birds}/>;
+              return <Book {...props} book={this.state.books} />;
             }}
           />
         </Switch>
