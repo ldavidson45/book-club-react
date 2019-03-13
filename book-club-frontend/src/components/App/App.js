@@ -11,7 +11,7 @@ import BookList from "../BookList/BookList";
 import Book from "../Book/Book";
 import NewBook from "../NewBook/NewBook";
 import Signup from "../Signup/Signup";
-import Login from "../LogIn/Login"
+import Login from "../LogIn/Login";
 import Axios from "axios";
 
 class App extends Component {
@@ -25,6 +25,7 @@ class App extends Component {
     this.handleSignup = this.handleSignup.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
@@ -58,20 +59,28 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-handleLogin(event) {
-  event.preventDefault();
-  Axios.post("http://localhost:3000/users/login", {
-    email: this.state.email,
-    password: this.state.password
-  })
-    .then(res => {
-      localStorage.token = res.data.token;
-      this.setState({ isLoggedIn: true });
+  handleLogin(event) {
+    event.preventDefault();
+    Axios.post("http://localhost:3000/users/login", {
+      email: this.state.email,
+      password: this.state.password
     })
-    .catch(err => console.log(err));
-}
+      .then(res => {
+        localStorage.token = res.data.token;
+        this.setState({ isLoggedIn: true });
+      })
+      .catch(err => console.log(err));
+  }
 
-
+  handleLogout(event) {
+    event.preventDefault();
+    this.setState({
+      email: "",
+      password: "",
+      isLoggedIn: false
+    });
+    localStorage.clear();
+  }
 
   render() {
     return (
@@ -90,6 +99,9 @@ handleLogin(event) {
           </Link>
           <Link className="nav-link" to="/login">
             Login
+          </Link>
+          <Link className="nav-link" to="/" onClick={this.handleLogout}>
+            Log out
           </Link>
         </nav>
 
@@ -140,8 +152,8 @@ handleLogin(event) {
               );
             }}
           />
-        {/* go to log in page */}
-        <Route
+          {/* go to log in page */}
+          <Route
             path="/login"
             render={props => {
               return (
