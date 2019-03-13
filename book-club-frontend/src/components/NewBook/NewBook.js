@@ -21,7 +21,6 @@ class NewBook extends Component {
 
   handleSubmit(event) {
     Axios.post("http://localhost:3000/api/books", this.state).then(res => {
-      this.props.getData();
       this.props.history.push("/");
     });
     event.preventDefault();
