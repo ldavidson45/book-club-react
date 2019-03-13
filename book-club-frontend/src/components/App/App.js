@@ -19,16 +19,10 @@ class App extends Component {
       books: []
     };
 
-    this.addBook = this.addBook.bind(this)
     this.getData = this.getData.bind(this)
   }
   componentDidMount() {
     this.getData()
-  //   Axios.get("http://localhost:3000/api/books")
-  // .then(res => {
-  //   const books = res.data;
-  //   this.setState({ books });
-  // })
 }
 
   getData () {
@@ -38,10 +32,6 @@ class App extends Component {
     this.setState({ books });
   })
   }
-
-addBook(newBook) {
-  this.state.books.push(newBook)
-}
 
 
   render() {
@@ -64,8 +54,8 @@ addBook(newBook) {
           <Route
             path="/"
             exact
-            render={() => {
-              return <BookList {...this.state} />;
+            render={(props) => {
+              return <BookList {...this.state} getData={this.getData} {...props} />;
             }}
           />
 
@@ -81,7 +71,7 @@ addBook(newBook) {
             path="/new-book"
             exact
             render={(props) => {
-              return <NewBook {...props} addBook={this.addBook} getData={this.getData} books={this.state.books}/>;
+              return <NewBook {...props} getData={this.getData} books={this.state.books}/>;
             }}
           />
 
