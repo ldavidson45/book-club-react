@@ -11,6 +11,7 @@ import BookList from "../BookList/BookList";
 import Book from "../Book/Book";
 import NewBook from "../NewBook/NewBook";
 import Signup from "../Signup/Signup";
+import Login from "../LogIn/Login"
 import Axios from "axios";
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
     };
     this.handleSignup = this.handleSignup.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +58,21 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+handleLogin(event) {
+  event.preventDefault();
+  Axios.post("http://localhost:3000/users/login", {
+    email: this.state.email,
+    password: this.state.password
+  })
+    .then(res => {
+      localStorage.token = res.data.token;
+      this.setState({ isLoggedIn: true });
+    })
+    .catch(err => console.log(err));
+}
+
+
+
   render() {
     return (
       <div>
@@ -70,6 +87,9 @@ class App extends Component {
           </Link>
           <Link className="nav-link" to="/signup">
             Signup
+          </Link>
+          <Link className="nav-link" to="/login">
+            Login
           </Link>
         </nav>
 
@@ -115,6 +135,18 @@ class App extends Component {
               return (
                 <Signup
                   handleSignup={this.handleSignup}
+                  handleInput={this.handleInput}
+                />
+              );
+            }}
+          />
+        {/* go to log in page */}
+        <Route
+            path="/login"
+            render={props => {
+              return (
+                <Login
+                  handleLogin={this.handleLogin}
                   handleInput={this.handleInput}
                 />
               );
