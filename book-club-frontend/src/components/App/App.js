@@ -21,7 +21,8 @@ class App extends Component {
       password: "",
       isLoggedIn: false
     };
-
+    this.handleSignup = this.handleSignup.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   componentDidMount() {
@@ -36,8 +37,24 @@ class App extends Component {
     }
   }
 
+  handleInput(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
-
+  handleSignup(event) {
+    event.preventDefault();
+    Axios.post("http://localhost:3000/users/signup", {
+      email: this.state.email,
+      password: this.state.password
+    })
+      .then(res => {
+        localStorage.token = res.data.token;
+        this.setState({ isLoggedIn: true });
+      })
+      .catch(err => console.log(err));
+  }
 
   render() {
     return (
@@ -81,11 +98,13 @@ class App extends Component {
             path="/new-book"
             exact
             render={props => {
-              return <NewBook
-                {...props}
-                getData={this.getData}
-                books={this.state.books}
-              />;
+              return (
+                <NewBook
+                  {...props}
+                  getData={this.getData}
+                  books={this.state.books}
+                />
+              );
             }}
           />
 
@@ -93,7 +112,12 @@ class App extends Component {
           <Route
             path="/signup"
             render={props => {
-              return <Signup signUp={this.signUp}/>;
+              return (
+                <Signup
+                  handleSignup={this.handleSignup}
+                  handleInput={this.handleInput}
+                />
+              );
             }}
           />
         </Switch>
