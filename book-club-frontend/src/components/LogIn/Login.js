@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.loginAndRedirect = this.redirect.bind(this)
+  }
+
+  loginAndRedirect (event) {
+    this.props.handleLogin(event)
+    this.props.history.push("/")  }
+
   render() {
+    const isLoggedIn = this.props.isLoggedIn
+
     return (
       <div>
-        <form onSubmit={this.props.handleLogin}>
+        <form onSubmit={this.loginAndRedirect}>
           <div className="form-content">
             <label>
               Email:

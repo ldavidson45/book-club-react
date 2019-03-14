@@ -9,8 +9,8 @@ import Login from "../LogIn/Login";
 import Axios from "axios";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: "",
@@ -50,6 +50,7 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         this.setState({ isLoggedIn: true });
+
       })
       .catch(err => console.log(err));
   }
@@ -66,6 +67,7 @@ class App extends Component {
         console.log(this.state.isLoggedIn);
       })
       .catch(err => console.log(err));
+      
   }
 
   handleLogout(event) {
@@ -147,6 +149,7 @@ class App extends Component {
                   <Signup
                     handleSignup={this.handleSignup}
                     handleInput={this.handleInput}
+
                   />
                 );
               }}
@@ -159,6 +162,7 @@ class App extends Component {
                   <Login
                     handleLogin={this.handleLogin}
                     handleInput={this.handleInput}
+                    {...props} {...this.state}
                   />
                 );
               }}
