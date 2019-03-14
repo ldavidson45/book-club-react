@@ -10,6 +10,7 @@ class Login extends Component {
 
   loginAndRedirect(event) {
     this.props.handleLogin(event);
+    this.props.history.push("/")
   }
 
   render() {
@@ -18,6 +19,7 @@ class Login extends Component {
         <h1 className="login-heading">Welcome!</h1>
         <form onSubmit={this.loginAndRedirect}>
           <div className="form-content">
+          <h3>Sign In</h3>
             <label>
               Email:
               <input

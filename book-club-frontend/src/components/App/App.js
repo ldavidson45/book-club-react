@@ -82,9 +82,10 @@ class App extends Component {
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;
+    console.log(isLoggedIn)
     return (
       <div>
-        <NavigationBar />
+        <NavigationBar handleLogout={this.handleLogout}/>
         <main>
           {/* Routes */}
           <Switch>
@@ -94,10 +95,9 @@ class App extends Component {
               path="/"
               exact
               render={props => {
-                return isLoggedIn ? (
+                return (isLoggedIn ? 
                   <BookList {...this.state} getData={this.getData} {...props} />
-                ) : (
-                  <Login
+                :  <Login
                     handleSignup={this.handleSignup}
                     handleLogin={this.handleLogin}
                     handleInput={this.handleInput}
