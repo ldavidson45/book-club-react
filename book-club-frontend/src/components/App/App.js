@@ -6,6 +6,7 @@ import Book from "../Book/Book";
 import NewBook from "../NewBook/NewBook";
 import Signup from "../Signup/Signup";
 import Login from "../LogIn/Login";
+import NavigationBar from "../NavigationBar/NavigationBar";
 import Axios from "axios";
 
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
         isLoggedIn: false
       });
     }
-    console.log(this.state.isLoggedIn)
+    console.log(this.state.isLoggedIn);
   }
 
   handleInput(e) {
@@ -51,7 +52,6 @@ class App extends Component {
         localStorage.token = res.data.token;
         this.setState({ isLoggedIn: true });
         console.log(this.state.isLoggedIn);
-
       })
       .catch(err => console.log(err));
   }
@@ -68,7 +68,6 @@ class App extends Component {
         console.log(this.state.isLoggedIn);
       })
       .catch(err => console.log(err));
-      
   }
 
   handleLogout(event) {
@@ -82,31 +81,12 @@ class App extends Component {
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn
+    const isLoggedIn = this.state.isLoggedIn;
     return (
       <div>
-        {/* Navigation Bar */}
-        <nav>
-          <h3>Book Club Library</h3>
-          <Link className="nav-link" to="/">
-            Home
-          </Link>
-          <Link className="nav-link" to="/new-book">
-            Add Book
-          </Link>
-          <Link className="nav-link" to="/signup">
-            Signup
-          </Link>
-          <Link className="nav-link" to="/login">
-            Login
-          </Link>
-          <Link className="nav-link" to="/" onClick={this.handleLogout}>
-            Log out
-          </Link>
-        </nav>
+        <NavigationBar />
         <main>
           {/* Routes */}
-
           <Switch>
             {/* render home page with book list */}
 
@@ -114,9 +94,17 @@ class App extends Component {
               path="/"
               exact
               render={props => {
-                return ( isLoggedIn ?
+                return isLoggedIn ? (
                   <BookList {...this.state} getData={this.getData} {...props} />
-                : "Please Log In");
+                ) : (
+                  <Login
+                    handleSignup={this.handleSignup}
+                    handleLogin={this.handleLogin}
+                    handleInput={this.handleInput}
+                    {...props}
+                    {...this.state}
+                  />
+                );
               }}
             />
             {/* view an individual book */}
@@ -124,7 +112,11 @@ class App extends Component {
               path="/books/:id"
               exact
               render={props => {
-                return isLoggedIn ? <Book {...this.state} {...props} /> : "please log in";
+                return isLoggedIn ? (
+                  <Book {...this.state} {...props} />
+                ) : (
+                  "please log in"
+                );
               }}
             />
             {/* create a new book in the DB */}
@@ -132,17 +124,34 @@ class App extends Component {
               path="/new-book"
               exact
               render={props => {
-                return ( isLoggedIn ?
+                return isLoggedIn ? (
                   <NewBook
                     {...props}
                     getData={this.getData}
                     books={this.state.books}
                   />
-                : "please log in");
+                ) : (
+                  "please log in"
+                );
               }}
-            /> 
+            />
 
             {/* go to the signup page */}
+            <Route
+              path="/login"
+              render={props => {
+                return (
+                  <Login
+                    handleSignup={this.handleSignup}
+                    handleLogin={this.handleLogin}
+                    handleInput={this.handleInput}
+                    {...props}
+                    {...this.state}
+                  />
+                );
+              }}
+            />
+            {/* go to log in page */}
             <Route
               path="/signup"
               render={props => {
@@ -150,28 +159,14 @@ class App extends Component {
                   <Signup
                     handleSignup={this.handleSignup}
                     handleInput={this.handleInput}
-                    {...props} {...this.state}
-
+                    {...props}
+                    {...this.state}
                   />
                 );
               }}
             />
-            {/* go to log in page */}
-            <Route
-              path="/login"
-              render={props => {
-                return (
-                  <Login
-                    handleLogin={this.handleLogin}
-                    handleInput={this.handleInput}
-                    {...props} {...this.state}
-                  />
-                );
-              }}
-            />
-          </Switch> 
-          </main>
-
+          </Switch>
+        </main>
       </div>
     );
   }

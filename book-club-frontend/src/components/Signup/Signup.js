@@ -25,7 +25,7 @@ class Signup extends Component {
               />
             </label>
             <label>
-              Author:
+              Password:
               <input
                 type="text"
                 name="password"

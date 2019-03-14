@@ -1,20 +1,21 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./Login.css"
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.loginAndRedirect = this.loginAndRedirect.bind(this)
+    this.loginAndRedirect = this.loginAndRedirect.bind(this);
   }
 
-  loginAndRedirect (event) {
-    this.props.handleLogin(event)
-    this.props.history.push("/")  }
+  loginAndRedirect(event) {
+    this.props.handleLogin(event);
+  }
 
   render() {
-    const isLoggedIn = this.props.isLoggedIn
-
     return (
-      <div>
+      <div className="main-container">
+        <h1 className="login-heading">Welcome!</h1>
         <form onSubmit={this.loginAndRedirect}>
           <div className="form-content">
             <label>
@@ -36,6 +37,9 @@ class Login extends Component {
             <button className="form-button" type="submit">
               Log In
             </button>
+            <p>
+              Don't have an account? <Link to="/signup">Create one!</Link>
+            </p>
           </div>
         </form>
       </div>

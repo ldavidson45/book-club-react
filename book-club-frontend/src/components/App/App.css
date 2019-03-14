@@ -1,22 +1,11 @@
-nav {
-  background: #71697A;
-  color: white;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100vw;
-  height: 50px;
-  position: fixed;
-  top: 0;
-  overflow: hidden;
-}
+
 
 main {
-  margin-top: 50px;
+  padding-top: 55px;
 }
 
-.nav-link {
-  color: white;
-  text-decoration: none
-  
+
+
+#root {
+  height: 100vh;
 }
