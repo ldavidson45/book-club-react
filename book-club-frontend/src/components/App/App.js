@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import {
-  Link,
-  Route,
-  Redirect,
-  Switch
-} from "react-router-dom";
+import { Link, Route, Redirect, Switch } from "react-router-dom";
 import BookList from "../BookList/BookList";
 import Book from "../Book/Book";
 import NewBook from "../NewBook/NewBook";
@@ -37,6 +32,7 @@ class App extends Component {
         isLoggedIn: false
       });
     }
+    console.log(this.state.isLoggedIn)
   }
 
   handleInput(e) {
@@ -49,7 +45,7 @@ class App extends Component {
     event.preventDefault();
     Axios.post("http://localhost:3000/users/signup", {
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     })
       .then(res => {
         localStorage.token = res.data.token;
@@ -67,7 +63,7 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         this.setState({ isLoggedIn: true });
-        console.log(this.state.isLoggedIn)
+        console.log(this.state.isLoggedIn);
       })
       .catch(err => console.log(err));
   }
@@ -83,6 +79,7 @@ class App extends Component {
   }
 
   render() {
+    const isLoggedIn = this.state.isLoggedIn
     return (
       <div>
         {/* Navigation Bar */}
@@ -104,68 +101,71 @@ class App extends Component {
             Log out
           </Link>
         </nav>
-<main>  
-        {/* Routes */}
-        <Switch>
-          {/* render home page with book list */}
-          <Route
-            path="/"
-            exact
-            render={props => {
-              return (
-                <BookList {...this.state} getData={this.getData} {...props} />
-              );
-            }}
-          />
-          {/* view an individual book */}
-          <Route
-            path="/books/:id"
-            exact
-            render={props => {
-              return <Book {...this.state} {...props} />;
-            }}
-          />
-          {/* create a new book in the DB */}
-          <Route
-            path="/new-book"
-            exact
-            render={props => {
-              return (
-                <NewBook
-                  {...props}
-                  getData={this.getData}
-                  books={this.state.books}
-                />
-              );
-            }}
-          />
+        <main>
+          {/* Routes */}
 
-          {/* go to the signup page */}
-          <Route
-            path="/signup"
-            render={props => {
-              return (
-                <Signup
-                  handleSignup={this.handleSignup}
-                  handleInput={this.handleInput}
-                />
-              );
-            }}
-          />
-          {/* go to log in page */}
-          <Route
-            path="/login"
-            render={props => {
-              return (
-                <Login
-                  handleLogin={this.handleLogin}
-                  handleInput={this.handleInput}
-                />
-              );
-            }}
-          />
-        </Switch>
-        </main>
+          <Switch>
+            {/* render home page with book list */}
+
+            <Route
+              path="/"
+              exact
+              render={props => {
+                return ( isLoggedIn ?
+                  <BookList {...this.state} getData={this.getData} {...props} />
+                : "Please Log In");
+              }}
+            />
+            {/* view an individual book */}
+            <Route
+              path="/books/:id"
+              exact
+              render={props => {
+                return isLoggedIn ? <Book {...this.state} {...props} /> : "please log in";
+              }}
+            />
+            {/* create a new book in the DB */}
+            <Route
+              path="/new-book"
+              exact
+              render={props => {
+                return ( isLoggedIn ?
+                  <NewBook
+                    {...props}
+                    getData={this.getData}
+                    books={this.state.books}
+                  />
+                : "please log in");
+              }}
+            /> 
+
+            {/* go to the signup page */}
+            <Route
+              path="/signup"
+              render={props => {
+                return (
+                  <Signup
+                    handleSignup={this.handleSignup}
+                    handleInput={this.handleInput}
+                  />
+                );
+              }}
+            />
+            {/* go to log in page */}
+            <Route
+              path="/login"
+              render={props => {
+                return (
+                  <Login
+                    handleLogin={this.handleLogin}
+                    handleInput={this.handleInput}
+                  />
+                );
+              }}
+            />
+          </Switch> 
+          </main>
+
       </div>
     );
   }
