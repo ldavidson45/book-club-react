@@ -42,7 +42,7 @@ class BookList extends Component {
     const books = this.state.books.map(book => {
       return (
         <div className="card" key={book._id}>
-          <Link to={"/books/" + book._id}>
+          <Link className="book-title" to={"/books/" + book._id}>
             <img className="book-cover" src={book.image} />
             <h4 className="book-title">{book.title}</h4>
           </Link>

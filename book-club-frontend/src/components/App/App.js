@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import {
-  BrowserRouter as Router,
   Link,
   Route,
   Redirect,
@@ -50,7 +49,7 @@ class App extends Component {
     event.preventDefault();
     Axios.post("http://localhost:3000/users/signup", {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     })
       .then(res => {
         localStorage.token = res.data.token;
@@ -68,6 +67,7 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         this.setState({ isLoggedIn: true });
+        console.log(this.state.isLoggedIn)
       })
       .catch(err => console.log(err));
   }
@@ -104,7 +104,7 @@ class App extends Component {
             Log out
           </Link>
         </nav>
-
+<main>  
         {/* Routes */}
         <Switch>
           {/* render home page with book list */}
@@ -165,6 +165,7 @@ class App extends Component {
             }}
           />
         </Switch>
+        </main>
       </div>
     );
   }
