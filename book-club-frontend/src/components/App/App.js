@@ -50,6 +50,7 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         this.setState({ isLoggedIn: true });
+        console.log(this.state.isLoggedIn);
 
       })
       .catch(err => console.log(err));
@@ -149,6 +150,7 @@ class App extends Component {
                   <Signup
                     handleSignup={this.handleSignup}
                     handleInput={this.handleInput}
+                    {...props} {...this.state}
 
                   />
                 );

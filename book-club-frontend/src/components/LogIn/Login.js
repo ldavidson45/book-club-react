@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.loginAndRedirect = this.redirect.bind(this)
+    this.loginAndRedirect = this.loginAndRedirect.bind(this)
   }
 
   loginAndRedirect (event) {
@@ -26,7 +26,7 @@ class Login extends Component {
               />
             </label>
             <label>
-              Author:
+              Password:
               <input
                 type="text"
                 name="password"
