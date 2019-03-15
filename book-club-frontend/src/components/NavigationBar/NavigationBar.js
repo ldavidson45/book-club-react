@@ -6,29 +6,33 @@ class NavigationBar extends Component {
   render() {
     return (
       <nav>
-        <Link className="nav-link-home" to="/">
-          Book Club Library
+        <Link className="logo-container" to="/">
+          <img className="logo-img" src={require("../../images/bee.svg")} />
         </Link>
-        <Link className="nav-link" to="/new-book">
-          Add Book
-        </Link>
-        {/* dropdown menu */}
-        <div className="nav-dropdown">
-          <p className="nav-link">Menu</p>
-          <div className="nav-dropdown-content">
-            <Link className="nav-link-dropdown" to="/signup">
-              Signup
-            </Link>
-            <Link className="nav-link-dropdown" to="/login">
-              Login
-            </Link>
-            <Link
-              className="nav-link-dropdown"
-              to="/"
-              onClick={this.props.handleLogout}
-            >
-              Log out
-            </Link>
+        <div className="nav-links-container">
+          <Link className="nav-link" to="/new-book">
+            <p>Add Book</p>
+          </Link>
+
+          {/* dropdown menu */}
+
+          <div className="nav-link dropdown">
+          <p>Menu</p>
+            <div className="drop-down-container">
+              <Link className="drop-down-item" to="/signup">
+                Signup
+              </Link>
+              <Link className="drop-down-item" to="/login">
+                Login
+              </Link>
+              <Link
+                className="drop-down-item"
+                to="/"
+                onClick={this.props.handleLogout}
+              >
+                Log out
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
