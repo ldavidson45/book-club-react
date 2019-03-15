@@ -58,7 +58,9 @@ class NewBook extends Component {
               onChange={this.handleChange}
             />
           </label>
-            <button className="form-button" type="submit">Submit</button>
+          <button className="form-button" type="submit">
+            Submit
+          </button>
         </div>
       </form>
     );

@@ -17,7 +17,7 @@ class NavigationBar extends Component {
           {/* dropdown menu */}
 
           <div className="nav-link dropdown">
-          <p>Menu</p>
+            <p>Menu</p>
             <div className="drop-down-container">
               <Link className="drop-down-item" to="/signup">
                 Signup
