@@ -1,0 +1,15 @@
+#root {
+    background-image: url("../../images/papertexture.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+form {
+    height: 50vh;
+}
+
+.login-heading {
+    color: black;
+    text-align: center
+}
