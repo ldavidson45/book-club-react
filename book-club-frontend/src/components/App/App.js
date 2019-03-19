@@ -116,7 +116,13 @@ class App extends Component {
                 return isLoggedIn ? (
                   <Book {...this.state} {...props} />
                 ) : (
-                  "please log in"
+                  <Login
+                    handleSignup={this.handleSignup}
+                    handleLogin={this.handleLogin}
+                    handleInput={this.handleInput}
+                    {...props}
+                    {...this.state}
+                  />
                 );
               }}
             />
@@ -132,7 +138,13 @@ class App extends Component {
                     books={this.state.books}
                   />
                 ) : (
-                  "please log in"
+                  <Login
+                    handleSignup={this.handleSignup}
+                    handleLogin={this.handleLogin}
+                    handleInput={this.handleInput}
+                    {...props}
+                    {...this.state}
+                  />
                 );
               }}
             />
