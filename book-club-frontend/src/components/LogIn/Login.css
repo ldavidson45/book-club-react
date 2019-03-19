@@ -1,10 +1,8 @@
-form {
-  height: 50vh;
-}
-
 .login-heading {
   color: black;
   text-align: center;
+  font-family: "Inconsolata", monospace;
+  font-size: 30px;
 }
 
 .form-content {
@@ -12,12 +10,18 @@ form {
   width: 400px;
 }
 
+.login-label {
+  font-size: 16px;
+  margin: 20px auto;
+  width: 80%;
+}
+
 input {
   width: 100%;
   font-size: 20px;
   padding: 5px 10px;
   border: 0;
-  border-radius: 20px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.6);
 }
 
@@ -25,19 +29,13 @@ input:focus {
   outline: none;
 }
 
-h3 {
+.form-title {
   font-family: "Work Sans", sans-serif;
   font-size: 26px;
   text-align: center;
+  margin-bottom: 60px;
 }
 
-button {
-  font-size: 56px;
-}
-
-label {
-  font-size: 16px;
-  margin-top: 10px;
-  margin: 0 auto;
-  width: 80%;
+.form-button {
+  font-size: 20px;
 }
