@@ -20,7 +20,7 @@ class Login extends Component {
         <form onSubmit={this.loginAndRedirect}>
           <div className="form-content">
             <h3>Sign In</h3>
-            <label>
+            <label className="login-label">
               Email:
               <input
                 type="text"

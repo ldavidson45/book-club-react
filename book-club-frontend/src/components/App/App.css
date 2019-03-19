@@ -1,7 +1,16 @@
 main {
   padding-top: 65px;
+  width: 100%;
 }
 
 #root {
   height: 100vh;
+  background-image: url("../../images/papertexture.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* width: 100vw; */
+}
+
+.main-container {
+  width: 100vw;
 }

@@ -32,22 +32,11 @@ nav {
   color: black;
   font-size: 20px;
   text-decoration: none;
-  padding: 0 30px;
   height: inherit;
-  display: flex;
-  width: 80px;
-  /* align-items: stretch; */
-}
-
-p {
+  width: 100px;
   vertical-align: middle;
-  font-family: "Inconsolata", monospace;
-  color: black;
-  font-size: 20px;
-  text-decoration: none;
-  padding: auto;
-  height: inherit;
   text-align: center;
+  padding: 0 10px;
 }
 
 .dropdown {
