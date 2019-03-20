@@ -96,7 +96,11 @@ class App extends Component {
               exact
               render={props => {
                 return isLoggedIn ? (
-                  <BookList {...this.state} getData={this.getData} {...props} />
+                  <BookList
+                    {...this.state}
+                    {...props}
+                    handleInput={this.handleInput}
+                  />
                 ) : (
                   <Login
                     handleSignup={this.handleSignup}
