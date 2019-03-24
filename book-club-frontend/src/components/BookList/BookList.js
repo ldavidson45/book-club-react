@@ -14,7 +14,8 @@ class BookList extends Component {
     };
     this.deleteBook = this.deleteBook.bind(this);
     this.getData = this.getData.bind(this);
-    this.addToBooksRead = this.addToBooksRead.bind(this);
+    this.addToHasRead = this.addToHasRead.bind(this);
+    this.addToWillRead = this.addToWillRead.bind(this);
   }
 
   getData(event) {
@@ -37,12 +38,25 @@ class BookList extends Component {
     event.preventDefault();
   }
 
-  addToBooksRead(event) {
+  addToHasRead(event) {
     event.preventDefault();
     const bookId = event.target.value;
     const email = this.props.email;
 
-    Axios.post("http://localhost:3000/api/books/new", {
+    Axios.post("http://localhost:3000/api/books/hasRead", {
+      bookId,
+      email
+    }).then(res => {
+      console.log(res);
+    });
+  }
+
+  addToWillRead(event) {
+    event.preventDefault();
+    const bookId = event.target.value;
+    const email = this.props.email;
+
+    Axios.post("http://localhost:3000/api/books/toRead", {
       bookId,
       email
     }).then(res => {
@@ -66,6 +80,9 @@ class BookList extends Component {
           </Link>
           <button value={book.id} onClick={this.addToBooksRead}>
             I've Read This!
+          </button>
+          <button value={book.id} onClick={this.addToWillRead}>
+            Add to Reading List!
           </button>
         </div>
       );
