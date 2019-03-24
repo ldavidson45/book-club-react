@@ -8,9 +8,11 @@ class Login extends Component {
     this.loginAndRedirect = this.loginAndRedirect.bind(this);
   }
 
-  loginAndRedirect(event) {
+  componentDidMount() {
+    console.log("login mounted");
+  }
+  loginAndRedirect(event, next) {
     this.props.handleLogin(event);
-    this.props.history.push("/");
   }
 
   render() {

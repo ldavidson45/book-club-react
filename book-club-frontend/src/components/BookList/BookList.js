@@ -18,6 +18,9 @@ class BookList extends Component {
     this.addToWillRead = this.addToWillRead.bind(this);
   }
 
+  componentDidMount() {
+    console.log("booklist mounted");
+  }
   getData(event) {
     event.preventDefault();
     this.setState({ books: [] });
