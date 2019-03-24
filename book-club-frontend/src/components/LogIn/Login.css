@@ -1,15 +1,41 @@
-#root {
-    background-image: url("../../images/papertexture.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-
-form {
-    height: 50vh;
-}
-
 .login-heading {
-    color: black;
-    text-align: center
+  color: black;
+  text-align: center;
+  font-family: "Inconsolata", monospace;
+  font-size: 30px;
+}
+
+.form-content {
+  background: rgba(150, 160, 173, 0.6);
+  width: 400px;
+}
+
+.login-label {
+  font-size: 16px;
+  margin: 20px auto;
+  width: 80%;
+}
+
+input {
+  width: 100%;
+  font-size: 20px;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+input:focus {
+  outline: none;
+}
+
+.form-title {
+  font-family: "Work Sans", sans-serif;
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.form-button {
+  font-size: 20px;
 }

@@ -13,27 +13,30 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main-container">
+        <h1 className="login-heading">Welcome!</h1>
         <form onSubmit={this.signupAndRedirect}>
           <div className="form-content">
-            <label>
+            <h3 className="form-title">Create An Account</h3>
+            <label className="login-label">
               Email:
               <input
                 type="text"
                 name="email"
+                placeholder=""
                 onChange={this.props.handleInput}
               />
             </label>
-            <label>
+            <label className="login-label">
               Password:
               <input
-                type="text"
+                type="password"
                 name="password"
                 onChange={this.props.handleInput}
               />
             </label>
             <button className="form-button" type="submit">
-              Create Account
+              Sign Up!
             </button>
           </div>
         </form>

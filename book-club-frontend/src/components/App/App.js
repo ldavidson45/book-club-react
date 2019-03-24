@@ -82,10 +82,10 @@ class App extends Component {
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;
-    console.log(isLoggedIn)
+    console.log(isLoggedIn);
     return (
       <div>
-        <NavigationBar handleLogout={this.handleLogout}/>
+        <NavigationBar handleLogout={this.handleLogout} />
         <main>
           {/* Routes */}
           <Switch>
@@ -95,9 +95,14 @@ class App extends Component {
               path="/"
               exact
               render={props => {
-                return (isLoggedIn ? 
-                  <BookList {...this.state} getData={this.getData} {...props} />
-                :  <Login
+                return isLoggedIn ? (
+                  <BookList
+                    {...this.state}
+                    {...props}
+                    handleInput={this.handleInput}
+                  />
+                ) : (
+                  <Login
                     handleSignup={this.handleSignup}
                     handleLogin={this.handleLogin}
                     handleInput={this.handleInput}
@@ -115,7 +120,13 @@ class App extends Component {
                 return isLoggedIn ? (
                   <Book {...this.state} {...props} />
                 ) : (
-                  "please log in"
+                  <Login
+                    handleSignup={this.handleSignup}
+                    handleLogin={this.handleLogin}
+                    handleInput={this.handleInput}
+                    {...props}
+                    {...this.state}
+                  />
                 );
               }}
             />
@@ -131,7 +142,13 @@ class App extends Component {
                     books={this.state.books}
                   />
                 ) : (
-                  "please log in"
+                  <Login
+                    handleSignup={this.handleSignup}
+                    handleLogin={this.handleLogin}
+                    handleInput={this.handleInput}
+                    {...props}
+                    {...this.state}
+                  />
                 );
               }}
             />

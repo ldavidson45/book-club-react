@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "./Login.css"
+import "./Login.css";
 
 class Login extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Login extends Component {
 
   loginAndRedirect(event) {
     this.props.handleLogin(event);
-    this.props.history.push("/")
+    this.props.history.push("/");
   }
 
   render() {
@@ -19,19 +19,20 @@ class Login extends Component {
         <h1 className="login-heading">Welcome!</h1>
         <form onSubmit={this.loginAndRedirect}>
           <div className="form-content">
-          <h3>Sign In</h3>
-            <label>
+            <h3 className="form-title">Sign In</h3>
+            <label className="login-label">
               Email:
               <input
                 type="text"
                 name="email"
+                placeholder=""
                 onChange={this.props.handleInput}
               />
             </label>
-            <label>
+            <label className="login-label">
               Password:
               <input
-                type="text"
+                type="password"
                 name="password"
                 onChange={this.props.handleInput}
               />
