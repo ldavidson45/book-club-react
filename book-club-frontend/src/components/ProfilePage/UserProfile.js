@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import HaveReadList from "../BookList/HaveReadList";
 
 class UserProfile extends Component {
   render() {
@@ -9,11 +10,13 @@ class UserProfile extends Component {
         return <li>{book.title}</li>;
       });
     }
-    return (
+    return booksRead ? (
       <div>
         <h1>{this.props.user.email}</h1>
-        <ul>{bookList}</ul>
+        <HaveReadList user={this.props.user} />
       </div>
+    ) : (
+      <h1>Loading...</h1>
     );
   }
 }
