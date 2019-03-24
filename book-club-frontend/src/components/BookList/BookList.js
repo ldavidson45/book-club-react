@@ -14,10 +14,11 @@ class BookList extends Component {
     };
     this.deleteBook = this.deleteBook.bind(this);
     this.getData = this.getData.bind(this);
+    this.addToBooksRead = this.addToBooksRead.bind(this);
   }
 
-  getData(e) {
-    e.preventDefault();
+  getData(event) {
+    event.preventDefault();
     this.setState({ books: [] });
     Axios.post("http://localhost:3000/api/books", this.props).then(res => {
       const books = res.data;
@@ -36,12 +37,24 @@ class BookList extends Component {
     event.preventDefault();
   }
 
+  addToBooksRead(event) {
+    event.preventDefault();
+    const bookId = event.target.value;
+    const email = this.props.email;
+
+    Axios.post("http://localhost:3000/api/books/new", {
+      bookId,
+      email
+    }).then(res => {
+      console.log(res);
+    });
+  }
+
   render() {
     const books = this.state.books.map(book => {
       if (!book.volumeInfo.imageLinks) {
         book.volumeInfo.imageLinks = "Hello";
       }
-      console.log(book.id);
       return (
         <div className="card" key={book.id}>
           <Link key={book.id} className="book-title" to={"/books/" + book.id}>
@@ -51,8 +64,8 @@ class BookList extends Component {
             />
             <h4 className="book-title">{book.volumeInfo.title}</h4>
           </Link>
-          <button value={book.id} onClick={this.deleteBook}>
-            Delete
+          <button value={book.id} onClick={this.addToBooksRead}>
+            I've Read This!
           </button>
         </div>
       );
