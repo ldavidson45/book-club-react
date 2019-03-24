@@ -16,19 +16,13 @@ class BookList extends Component {
     this.getData = this.getData.bind(this);
   }
 
-  // API Call to DB - returns list of books
-  // componentDidMount() {
-  //   // this.getData();
-  // }
-
   getData(e) {
-    console.log(this.state.searchTerms);
-    Axios.get("http://localhost:3000/api/books").then(res => {
+    e.preventDefault();
+    this.setState({ books: [] });
+    Axios.post("http://localhost:3000/api/books", this.props).then(res => {
       const books = res.data;
       this.setState({ books });
-      console.log(books);
     });
-    e.preventDefault();
   }
 
   deleteBook(event) {
@@ -47,17 +41,17 @@ class BookList extends Component {
       if (!book.volumeInfo.imageLinks) {
         book.volumeInfo.imageLinks = "Hello";
       }
-      console.log(book.volumeInfo.imageLinks);
+      console.log(book.id);
       return (
-        <div className="card" key={book._id}>
-          <Link className="book-title" to={"/books/" + book._id}>
+        <div className="card" key={book.id}>
+          <Link key={book.id} className="book-title" to={"/books/" + book.id}>
             <img
               className="book-cover"
               src={book.volumeInfo.imageLinks.thumbnail}
             />
             <h4 className="book-title">{book.volumeInfo.title}</h4>
           </Link>
-          <button value={book._id} onClick={this.deleteBook}>
+          <button value={book.id} onClick={this.deleteBook}>
             Delete
           </button>
         </div>
