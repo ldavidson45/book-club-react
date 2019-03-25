@@ -2,18 +2,16 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Book.css";
 
-class BookTitle extends Component {
+class BookTile extends Component {
   render() {
     const titles = this.props.books.map(book => {
       return (
         <div
           className="book-tile"
           style={{
-            background: `linear-gradient(
-            rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)
-          ),
-          url(${book.image})`
+            background: `url(${book.image})`,
+            backgroundPosition: "center",
+            backgroundSize: "cover"
           }}
         >
           <a className="book-title" href={`/book/${book._id}`}>
@@ -22,8 +20,8 @@ class BookTitle extends Component {
         </div>
       );
     });
-    return <div>{titles}</div>;
+    return <div className="books-read-container">{titles}</div>;
   }
 }
 
-export default BookTitle;
+export default BookTile;

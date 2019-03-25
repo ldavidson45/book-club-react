@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import BookTitle from "../Book/BookTitle";
+import BookTile from "../Book/BookTile";
 import Book from "../Book/Book";
 
 class HaveReadList extends Component {
   render() {
     return (
-      <div>
+      <div className="books-read-list">
         <h3>I've Read:</h3>
-        <BookTitle books={this.props.user.booksRead} />
+        <BookTile books={this.props.user.booksRead} />
       </div>
     );
   }
