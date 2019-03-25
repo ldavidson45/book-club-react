@@ -1,41 +1,69 @@
-.login-heading {
-  color: black;
-  text-align: center;
+* {
+  box-sizing: border-box;
+}
+
+.form-label {
   font-family: "Inconsolata", monospace;
-  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  margin: 10px 5%;
 }
 
-.form-content {
-  background: rgba(150, 160, 173, 0.6);
-  width: 400px;
-}
-
-.login-label {
-  font-size: 16px;
-  margin: 20px auto;
-  width: 80%;
-}
-
-input {
-  width: 100%;
+.form-input {
   font-size: 20px;
-  padding: 5px 10px;
-  border: 0;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.6);
-}
-
-input:focus {
-  outline: none;
+  border-radius: 20px;
+  border: solid 1px;
+  padding: 10px;
+  margin: 9px;
 }
 
 .form-title {
-  font-family: "Work Sans", sans-serif;
-  font-size: 26px;
+  font-size: 46px;
+  color: white;
+  font-family: "Inconsolata", monospace;
   text-align: center;
-  margin-bottom: 60px;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.login-signup-container {
+  background: rgba(150, 160, 173, 0.9);
+  width: 600px;
+  margin: 10px auto;
+  padding: 0 10px;
+  height: 700px;
+}
+
+.login-signup-form {
+  padding: 20px;
+  margin: 0;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-button {
+  border-radius: 20px;
   font-size: 20px;
+  font-family: "Inconsolata", monospace;
+  background: rgba(68, 68, 68, 0.9);
+  color: white;
+  padding: 10px 50px;
+  margin: 0 auto;
+  display: block;
+}
+
+.signup-link {
+  text-align: center;
+  font-size: 24px;
+  justify-self: flex-end;
+  margin-top: 20px;
+}
+
+.signup-link:hover {
+  color: blue;
+  text-decoration: underline;
 }
