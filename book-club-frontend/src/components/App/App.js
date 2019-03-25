@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route, Redirect, Switch } from "react-router-dom";
-// import BookList from "../BookList/BookList";
+import BookList from "../BookList/BookList";
 // import Book from "../Book/Book";
 // import NewBook from "../NewBook/NewBook";
 // import Signup from "../Signup/Signup";
@@ -80,7 +80,11 @@ class App extends Component {
     event.preventDefault();
     Axios.post("http://localhost:3000/user/login", {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      name: {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName
+      }
     })
       .then(res => {
         console.log(res);
@@ -117,7 +121,12 @@ class App extends Component {
     console.log(isLoggedIn);
     return (
       <div>
-        <NavigationBar handleLogout={this.handleLogout} />
+        <NavigationBar
+          handleLogout={this.handleLogout}
+          {...this.state}
+          handleInput={this.handleInput}
+          {...this.props}
+        />
         <main>
           {/* Routes */}
           <Switch>
@@ -150,6 +159,18 @@ class App extends Component {
                     handleLogin={this.handleLogin}
                     handleSignup={this.handleSignup}
                     handleClearInput={this.handleClearInput}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/search"
+              render={props => {
+                return (
+                  <BookList
+                    {...props}
+                    {...this.state}
+                    handleInput={this.handleInput}
                   />
                 );
               }}

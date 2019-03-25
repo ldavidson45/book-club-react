@@ -14,14 +14,9 @@ class NavigationBar extends Component {
           />
         </Link>
         <div className="nav-links-container">
-          {/* <Link className="nav-link" to="/new-book">
-            <p></p>
-          </Link> */}
-          <input
-            className="form-input"
-            placeholder="Search for a book!"
-            onChange={this.props.handleInput}
-          />
+          <Link className="nav-link" to="/search">
+            <p>Search Books</p>
+          </Link>
 
           {/* dropdown menu */}
 

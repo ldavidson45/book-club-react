@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./BookList.css";
 import Axios from "axios";
 import Book from "../Book/Book";
+import SearchBar from "../SearchBar/SearchBar";
 
 class BookList extends Component {
   constructor(props) {
@@ -44,11 +45,11 @@ class BookList extends Component {
   addToHasRead(event) {
     event.preventDefault();
     const bookId = event.target.value;
-    const email = this.props.email;
+    const userId = localStorage.userId;
 
     Axios.post("http://localhost:3000/api/books/hasRead", {
       bookId,
-      email
+      userId
     }).then(res => {
       console.log(res);
     });
@@ -81,7 +82,7 @@ class BookList extends Component {
             />
             <h4 className="book-title">{book.volumeInfo.title}</h4>
           </Link>
-          <button value={book.id} onClick={this.addToBooksRead}>
+          <button value={book.id} onClick={this.addToHasRead}>
             I've Read This!
           </button>
           <button value={book.id} onClick={this.addToWillRead}>
@@ -93,7 +94,7 @@ class BookList extends Component {
     return (
       <div>
         <form onSubmit={this.getData}>
-          <input
+          <SearchBar
             type="text"
             name="searchTerms"
             placeholder="search by title"
