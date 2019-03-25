@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Link, Route, Redirect, Switch } from "react-router-dom";
-import BookList from "../BookList/BookList";
-import Book from "../Book/Book";
-import NewBook from "../NewBook/NewBook";
-import Signup from "../Signup/Signup";
+import { Route, Redirect, Switch } from "react-router-dom";
+// import BookList from "../BookList/BookList";
+// import Book from "../Book/Book";
+// import NewBook from "../NewBook/NewBook";
+// import Signup from "../Signup/Signup";
 import Login from "../LogIn/Login";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import UserProfile from "../ProfilePage/UserProfile";

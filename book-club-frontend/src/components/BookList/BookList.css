@@ -25,3 +25,20 @@
   color: black;
   text-decoration: none;
 }
+
+.books-read-list {
+  width: 25vw;
+  margin: 10px;
+  border-right: 2px solid black;
+  justify-content: center;
+}
+
+.books-to-read-list {
+  width: 75vw;
+  margin: 10px;
+  padding-left: 5px;
+}
+
+.book-list-header {
+  font-family: "Inconsolata", monospace;
+}

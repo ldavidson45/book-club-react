@@ -12,7 +12,7 @@
 .book-tile {
   height: 100px;
   width: 100px;
-  margin: 5px;
+  margin: 5px auto;
   display: flex;
   background-position-y: center;
 }

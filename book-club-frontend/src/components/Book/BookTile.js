@@ -7,6 +7,7 @@ class BookTile extends Component {
     const titles = this.props.books.map(book => {
       return (
         <div
+          key={book._id}
           className="book-tile"
           style={{
             background: `url(${book.image})`,
@@ -14,9 +15,9 @@ class BookTile extends Component {
             backgroundSize: "cover"
           }}
         >
-          <a className="book-title" href={`/book/${book._id}`}>
+          <Link className="book-title" to={`/book/${book._id}`}>
             {book.title}
-          </a>
+          </Link>
         </div>
       );
     });

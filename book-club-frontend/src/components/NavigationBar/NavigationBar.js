@@ -7,7 +7,11 @@ class NavigationBar extends Component {
     return (
       <nav>
         <Link className="logo-container" to="/">
-          <img className="logo-img" src={require("../../images/bee.svg")} />
+          <img
+            className="logo-img"
+            alt="bee logo"
+            src={require("../../images/bee.svg")}
+          />
         </Link>
         <div className="nav-links-container">
           <Link className="nav-link" to="/new-book">
